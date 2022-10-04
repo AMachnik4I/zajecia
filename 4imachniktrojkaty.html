@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a;
+        let b;
+        let c;
+        while(isNaN(a)) { a = parseInt(prompt("Podaj bok a:")) }
+        while(isNaN(b)) { b = parseInt(prompt("Podaj bok b:")) }
+        while(isNaN(c)) { c = parseInt(prompt("Podaj bok c:")) }
+        function czyTrojkat(a,b,c)
+        {
+            if(a+b>c && a+c>b && b+c>a)
+                return true;
+            else
+                return false;
+        }
+        function pole(a,b,c)
+        {
+            const p = (a+b+c)/2;
+            let P = p * (p-a) * (p-b) * (p-c);
+            P = Math.sqrt(P);
+            return P.toFixed(2);
+        }
+
+        if(czyTrojkat(a,b,c)==true)
+        {
+            document.write("Z podanych boków można utworzyć trójkąt.<br>");
+            document.write(`Pole trójkąta wynosi: ${pole(a,b,c)}`);
+        }
+        else
+            document.write("Z podanych boków nie można utworzyć trójkątu.");
+    </script>
+</body>
+</html>

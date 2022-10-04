@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function kalkulator1(num1, num2, op)
+        {
+            switch(op)
+            {
+                case "+":
+                    return num1 + num2;
+                    break;
+                case "-":
+                    return num1 - num2;
+                    break;
+                case "*":
+                    return num1 * num2;
+                    break;
+                case "/":
+                    return num1 / num2;
+                    break;
+                case "%":
+                    return num1 % num2;
+                    break;
+                default:
+                    return "Nieznany operator";
+                    break;
+            }
+        }
+        function kalkulator2()
+        {
+            let num1;
+            let num2;
+            while(isNaN(num1))
+            {
+                num1 = parseInt(prompt("Podaj pierwszą liczbę:"));
+            }
+            while(isNaN(num2))
+            {
+                num2 = parseInt(prompt("Podaj drugą liczbę:"));
+            }
+            const op = prompt("Podaj znak operacji:");
+            switch(op)
+            {
+                case "+":
+                    return num1 + num2;
+                    break;
+                case "-":
+                    return num1 - num2;
+                    break;
+                case "*":
+                    return num1 * num2;
+                    break;
+                case "/":
+                    return num1 / num2;
+                    break;
+                case "%":
+                    return num1 % num2;
+                    break;
+                default:
+                    return "Nieznany operator";
+                    break;
+            }
+        }
+        /* // Input do funkcji kalkulator1
+        let num1;
+        let num2;
+        while(isNaN(num1))
+        {
+            num1 = parseInt(prompt("Podaj pierwszą liczbę:"));
+        }
+        while(isNaN(num2))
+        {
+            num2 = parseInt(prompt("Podaj drugą liczbę:"));
+        }
+        const op = prompt("Podaj znak operacji:");
+        */
+        document.write(`Wynik działania wynosi: ${kalkulator2(/*num1, num2, op*/)}`);
+    </script>
+</body>
+</html>
