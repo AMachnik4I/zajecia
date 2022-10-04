@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function kalkulator(op,num1=1, num2=1)
+        {
+            switch(op)
+            {
+                case "+":
+                    return num1 + num2;
+                    break;
+                case "-":
+                    return num1 - num2;
+                    break;
+                case "*":
+                    return num1 * num2;
+                    break;
+                case "/":
+                    return num1 / num2;
+                    break;
+                case "%":
+                    return num1 % num2;
+                    break;
+                default:
+                    return "Nieznany operator";
+                    break;
+            }
+        }
+        const num1 = prompt("Podaj pierwszą liczbę:");
+        const num2 = prompt("Podaj drugą liczbę:");                                                                              
+        const op = prompt("Podaj znak operacji:");
+
+        if(isNaN(num1) && isNaN(num2))
+            document.write(kalkulator(op));
+        else if(isNaN(num1))
+            document.write(kalkulator(op,parseInt(num2)));
+        else if(isNaN(num2))
+            document.write(kalkulator(op,parseInt(num1)));
+        else
+            document.write(kalkulator(op,parseInt(num1),parseInt(num2)));
+    </script>
+</body>
+</html>
