@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = [6, 7, 8, 9, 10];
+        const arr = [];
+        arr.push(arr1);
+        arr.push(arr2);
+        console.log(arr);
+        for (const nestedArr of arr) {
+            console.log("Zawartość:");
+            for (let i = 0; i < nestedArr.length; i++) {
+                console.log(nestedArr[i]);
+            }
+        }
+        */
+      let num1;
+      let num2;
+      let sign;
+      const operations = [];
+      function getData() {
+        while (isNaN(num1)) {
+          num1 = parseInt(prompt("Podaj pierwszą liczbę:"));
+        }
+        while (isNaN(num2)) {
+          num2 = parseInt(prompt("Podaj drugą liczbę:"));
+        }
+        sign = prompt("Podaj znak działania:");
+      }
+      function operation() {
+        num1 = undefined;
+        num2 = undefined;
+        getData();
+        operations.push([num1, num2, sign]);
+      }
+      function calculate(arr) {
+        switch (arr[2]) {
+          case "+":
+            return arr[0] + arr[1];
+          case "-":
+            return arr[0] - arr[1];
+          case "*":
+            return arr[0] * arr[1];
+          case "/":
+            return arr[0] / arr[1];
+          case "%":
+            return arr[0] % arr[1];
+          default:
+            return "Nieznany operator!";
+        }
+      }
+      let next = true;
+      function print(arr) {
+        next = false;
+        for (const nestedArr of arr) {
+          for (const elem of nestedArr) console.log(elem);
+        }
+      }
+      do {
+        confirm("Kolejne działanie?") ? operation() : print(operations);
+      } while (next);
+      console.log(operations);
+      for (const arr of operations) {
+        document.write(calculate(arr) + "<br>");
+      }
+    </script>
+  </body>
+</html>
