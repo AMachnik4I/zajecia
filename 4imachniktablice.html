@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andrzej Machnik</title>
+  </head>
+  <body>
+    <script>
+      let count;
+      do {
+        count = parseInt(prompt("Podaj ilosc liczb (od 10 do 20)"));
+      } while (isNaN(parseInt(count)) || count < 10 || count > 20);
+      const arr = [[], [], []];
+      for (let i = 0; i < count; i++) {
+        let inputNum = 0;
+        do {
+          inputNum = parseInt(prompt(`Podaj ${i + 1} liczbę:`));
+        } while (isNaN(inputNum));
+        if (inputNum == 0) {
+          arr[2].push(inputNum);
+        } else if (inputNum % 2 == 0) {
+          arr[0].push(inputNum);
+        } else if (inputNum % 2 == 1 || inputNum % 2 == -1) {
+          arr[1].push(inputNum);
+        }
+      }
+
+      for (let i = arr[0].length - 1; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+          if (arr[0][j] > arr[0][j + 1]) {
+            const temp = arr[0][j];
+            arr[0][j] = arr[0][j + 1];
+            arr[0][j + 1] = temp;
+          }
+        }
+      }
+      for (let i = arr[1].length - 1; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+          if (arr[1][j] > arr[1][j + 1]) {
+            const temp = arr[1][j];
+            arr[1][j] = arr[1][j + 1];
+            arr[1][j + 1] = temp;
+          }
+        }
+      }
+      let evens = "";
+      let odds = "";
+      const evensMin = arr[0][0];
+      const evensMax = arr[0][arr[0].length - 1];
+      const oddsMin = arr[1][0];
+      const oddsMax = arr[1][arr[1].length - 1];
+      for (const elem of arr[0]) {
+        evens += ` ${elem}`;
+      }
+      for (const elem of arr[1]) {
+        odds += ` ${elem}`;
+      }
+
+      document.write(`Elementy tablicy parzystej to: ${evens}`);
+      document.write(
+        `<br>Najmniejszy element tej tablicy to: ${evensMin}, a największy to: ${evensMax}.<br>`
+      );
+      document.write(`Elementy tablicy nieparzystej to: ${odds}`);
+      document.write(
+        `<br>Najmniejszy element tej tablicy to: ${oddsMin}, a największy to: ${oddsMax}.<br>`
+      );
+      if (arr[2].length > 0)
+        document.write(`Cyfra 0 wystąpiła ${arr[2].length} razy.<br>`);
+
+      const overallMax = evensMax > oddsMax ? evensMax : oddsMax;
+      let overallMin;
+      if (evensMin <= 0 || oddsMin <= 0 || arr[2].length == 0) {
+        overallMin = evensMin < oddsMin ? evensMin : oddsMin;
+      } else {
+        overallMin = 0;
+      }
+      document.write(
+        `Ogólnie najmniejszy element występujący w tablicach to: ${overallMin}, a największy to: ${overallMax}.<br>`
+      );
+      console.log(arr);
+    </script>
+  </body>
+</html>
