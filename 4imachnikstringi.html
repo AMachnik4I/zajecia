@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Andrzej Machnik 4I">
+    <title>AM4I - stringi</title>
+  </head>
+  <body>
+    <form action="#">
+      <label for="txt1">Wprowadź tekst: <input type="text" id="txt1"></label>
+      <label for="txt2">Wprowadź tekst: <input type="text" id="txt2"></label><br>
+      <button id="palindrome">palindrom?</button>
+      <button id="strlength">ile znaków?</button>
+      <button id="countvowels">ile samogłosek?</button>
+      <button id="contains">czy zawiera?</button>
+      <button id="replacechars">zamień znaki</button>
+    </form>
+
+    <p id="display"></p>
+
+    <script>
+      const pldBtn = document.querySelector('#palindrome');
+      const lenBtn = document.querySelector('#strlength');
+      const vowBtn = document.querySelector('#countvowels');
+      const conBtn = document.querySelector('#contains');
+      const rplBtn = document.querySelector('#replacechars');
+      const display = document.querySelector('#display');
+
+      function checkStr(txt) {
+        if(txt.trim().length==0)
+          return 0;
+        else
+          return 1;
+      }
+
+      function isPalindrome() {
+        const txt1 = document.querySelector('#txt1');
+        if(!checkStr(txt1.value)) {
+          display.innerHTML = 'Podaj prawidłowy ciąg znaków!'
+          return;
+        }
+        const arr = [...txt1.value];
+        for(let i=0,j=arr.length-1;i<=j;i++,j--)
+        {
+          if(arr[i] != arr[j]) {
+            display.innerHTML = `Wyraz ${txt1.value} nie jest palindromem.`;
+            return;
+          }
+        }
+        display.innerHTML = `Wyraz ${txt1.value} jest palindromem.`;
+      }
+
+      function getStrLength() {
+        const txt1 = document.querySelector('#txt1');
+        if(!checkStr(txt1.value)) {
+          display.innerHTML = 'Podaj prawidłowy ciąg znaków!'
+          return;
+        }
+        display.innerHTML = `Wyraz ${txt1.value} ma ${txt1.value.length} znaków.`;
+      }
+
+      function countVowels() {
+        const txt1 = document.querySelector('#txt1');
+        if(!checkStr(txt1.value)) {
+          display.innerHTML = 'Podaj prawidłowy ciąg znaków!'
+          return;
+        }
+        const count = txt1.value.match(/[aeiouy]/gi).length;
+        display.innerHTML = `Wyraz ${txt1.value} zawiera ${count} samogłosek.`;
+      }
+
+      function strContains() {
+        const txt1 = document.querySelector('#txt1');
+        const txt2 = document.querySelector('#txt2');
+        if(!checkStr(txt1.value) || !checkStr(txt2.value)) {
+          display.innerHTML = 'Podaj prawidłowy ciąg znaków!'
+          return;
+        }
+        if(txt1.value.includes(txt2.value))
+          display.innerHTML = `Tekst ${txt1.value} zawiera podciąg ${txt2.value}.`;
+        else
+          display.innerHTML = `Tekst ${txt1.value} nie zawiera podciągu ${txt2.value}.`;
+      }
+
+      function replaceCharacters() {
+        const txt1 = document.querySelector('#txt1');
+        const txt2 = document.querySelector('#txt2');
+        if(!checkStr(txt1.value)) {
+          display.innerHTML = 'Podaj prawidłowy ciąg znaków!'
+          return;
+        }
+        const parts = txt2.value.split(" ");
+        if(parts.length==2) {
+          if(txt1.value.includes(parts[0])) {
+            const newtxt = txt1.value.replace(parts[0],parts[1]);
+            display.innerHTML = `Nowy tekst to: ${newtxt}`;
+          }
+          else
+            display.innerHTML = `Nie mogę zastąpić (w tekście nie ma podciągu ${parts[0]})`;
+        }
+        else
+          display.innerHTML = 'Podaj dwa ciągi znaków oddzielone spacją.';
+      }
+
+
+      pldBtn.addEventListener('click',function(evt) {
+        evt.preventDefault();
+        isPalindrome();
+      });
+
+      lenBtn.addEventListener('click',function(evt) {
+        evt.preventDefault();
+        getStrLength();
+      });
+
+      vowBtn.addEventListener('click',function(evt) {
+        evt.preventDefault();
+        countVowels();
+      });
+
+      conBtn.addEventListener('click',function(evt) {
+        evt.preventDefault();
+        strContains();
+      });
+
+      rplBtn.addEventListener('click',function(evt) {
+        evt.preventDefault();
+        replaceCharacters();
+      });
+
+    </script>
+  </body>
+</html>
