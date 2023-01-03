@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <label for="elemSel"> Wybierz element do dodania:
+        <select id="elemSel">
+            <option value="p">p</option>
+            <option value="div">div</option>
+            <option value="aside">aside</option>
+            <option value="article">article</option>
+        </select></label><br>
+        <label>Dodaj w miejscu: </label>
+        <label>main<input type="radio" name="place" value="main"></label>
+        <label>aside<input type="radio" name="place" value="aside"></label><br>
+        <label for="text">Wpisz jakiś tekst: <input type="text" id="text"></label><br>
+        <label>kolor tekstu <input type="color" id="tcolor"></label><br>
+        <label>kolor tła <input type="color" id="bcolor"></label><br>
+        <button>Dodaj</button>
+    </section>
+    <main>
+    </main>
+    <aside>
+    </aside>
+
+    <script>
+        const addElementBtn = document.querySelector('button');
+        const main = document.querySelector('main');
+        const aside = document.querySelector('aside');
+
+        function addElement() {
+            const createElement = document.querySelector('#elemSel');
+            const place = document.querySelector('[name=place]:checked');
+            const text = document.querySelector('#text');
+            const tcolor = document.querySelector('#tcolor');
+            const bcolor = document.querySelector('#bcolor');
+
+            const element = document.createElement(createElement.value);
+            const elementText = document.createTextNode(text.value);
+            element.appendChild(elementText);
+
+            element.style.color = tcolor.value;
+            element.style.backgroundColor = bcolor.value;
+
+            if(place.value=='main')
+                main.appendChild(element);
+            else
+                aside.appendChild(element);
+        }
+
+        addElementBtn.addEventListener('click',addElement);
+    </script>
+</body>
+</html>

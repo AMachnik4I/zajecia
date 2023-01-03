@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Dodawanie elementów</h1>
+    <button>Dodaj</button>
+    <p></p>
+
+    <script>
+        const addElementBtn = document.querySelector('button');
+        const h1 = document.querySelector('h1');
+        const display = document.querySelector('p');
+        let i=1;
+        function addElement() {
+            const element = document.createElement('p');
+            
+            //element.innerHTML = 'Jakiś tekst';
+            //element.innerText = 'Jakiś tekst';
+            //element.textContent = 'Jakiś tekst';
+
+            const elementText = document.createTextNode(`Jakiś tekst ${i}`);
+            element.appendChild(elementText);
+
+            element.style.color = '#f00';
+            element.style.backgroundColor = '#ff0';
+            element.style.letterSpacing = '10px';
+            element.style.textAlign = 'center';
+            
+            element.addEventListener('click',function() {
+                this.remove();
+            });
+
+            i++;
+            display.appendChild(element);
+        }
+
+        addElementBtn.addEventListener('click',addElement)
+    </script>
+</body>
+</html>
