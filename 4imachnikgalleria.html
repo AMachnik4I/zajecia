@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" conten="Andrzej Machnik 4I">
+    <title>Galeria</title>
+</head>
+<body>
+    <section class="gallery">
+        <img src="https://picsum.photos/500/300?random=1" alt="obrazek">
+        <img src="https://picsum.photos/500/300?random=2" alt="obrazek">
+        <img src="https://picsum.photos/500/300?random=3" alt="obrazek">
+        <img src="https://picsum.photos/500/300?random=4" alt="obrazek">
+        <img src="https://picsum.photos/500/300?random=5" alt="obrazek">
+        <img src="https://picsum.photos/500/300?random=6" alt="obrazek">
+    </section>
+    <section id="display">
+    </section>
+    <script>
+        const display = document.querySelector('#display');
+        const images = document.querySelectorAll('img');
+
+        function showImage(image)
+        {
+            const newImage = document.createElement('img');
+            newImage.src = image.src;
+            newImage.width = 1000;
+            newImage.height = 600;
+            display.innerHTML = '';
+            display.appendChild(newImage);
+        }
+
+        for(const image of images)
+        {
+            image.addEventListener('click',function() {
+                showImage(image);
+            });
+        }
+
+    </script>
+</body>
+</html>
