@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ludzio-dodawacz</title>
+</head>
+<body>
+    <form action="#">
+        <label for="name"><input type="text" name="name" id="name" required></label><br>
+        <label for="surname"><input type="text" name="surname" id="surname" required></label><br>
+        <label for="age"><input type="number" name="age" id="age" required></label><br>
+        <input type="submit" name="addPerson" value="submit" id="addBtn">Dodaj osobę</button><br>
+        <label for="searchedPersonSurname"><input type="text" name="searchedPersonSurname" id="searchedPersonSurname"></label><br> 
+        <label for="searchedPersonAge"><input type="text" name="searchedPersonAge" id="searchedPersonAge"></label><br>
+        <input type="submit" name="searchedPerson" value="submit" id="searchBtn">Szukaj osoby</button><br>
+    </form>
+    <div id="display"></div>
+    <script>
+        const display = document.querySelector('#display');
+        const addBtn = document.querySelector('#addBtn');
+        const searchBtn = document.querySelector('#searchBtn');
+        
+        const persons = [];
+
+        function addPerson() {
+            const name = document.querySelector('#name');
+            const surname = document.querySelector('#surname');
+            const age = document.querySelector('#age');
+
+            persons.push({
+                name: name.value,
+                surname: surname.value,
+                age: age.value
+            });
+        }
+
+        function searchPerson() {
+            const surname = document.querySelector('#searchedPersonSurname');
+            const age = document.querySelector('#searchedPersonAge');
+
+            persons.filter(person=>person.age=age).filter(person=>person.surname=surname).map(person=>{
+                display.innerHTML += `<p>${person.name}</p>`;
+            });
+        }
+
+        addBtn.addEventListener('click',function(evt){
+            evt.preventDefault();
+            addPerson();
+        });
+
+        searchBtn.addEventListener('click',function(evt){
+            evt.preventDefault();
+            searchPerson();
+        });
+
+    </script>
+</body>
+</html>
