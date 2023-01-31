@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+    <script>
+        
+        const display = document.querySelector('#display');
+        /*const car = {
+            make: 'Toyota',
+            model: 'Yaris',
+            year: 2010,
+            engineCapacity: 1.4,
+            color: 'red',
+            startEngine() {
+                return 'Silnik został uruchomiony.';
+            },
+            stopEngine() {
+                return 'Silnik został zatrzymany.';
+            },
+            returnCost() {
+                return `Koszt wynosi: ${this.cost}`;
+            }
+        };
+
+        car.cost = 20000;
+
+        display.innerHTML = car.make;
+        display.innerHTML += ` ${car.model}`;
+        display.innerHTML += `<p> Stan: ${car.startEngine()}</p>`;
+        display.innerHTML += `<p>${car.returnCost()}</p>`;
+
+        console.log(car);
+
+        for(const key in car) {
+            if(typeof car[key] != 'function')
+                display.innerHTML += `<p>${key}: ${car[key]}</p>`;
+        }*/
+
+        const persons = [
+            {    
+                name: 'Marek',
+                age: 14,
+            },
+            {
+                name: 'Jarek',
+                age: 29,
+            },
+            {
+                name: 'Zuza',
+                age: 54,
+            },
+            {
+                name: 'Szymon',
+                age: 18,
+            },
+            {
+                name: 'Andrzej',
+                age: 106,
+            },
+            {
+                name: 'Grzegorz',
+                age: 44,
+            },
+            {
+                name: 'Krzysztof',
+                age: 32,
+            }
+        ];
+
+        for(const person of persons) {
+            display.innerHTML += `<p>${person.name}</p>`; 
+        }
+        display.innerHTML += '<br>';
+        for(const person of persons) {
+            if(person.age>30)
+                display.innerHTML += `<p>${person.name}</p>`;
+        }
+        display.innerHTML += '<br>';
+        
+        persons.filter(person=>person.age>30).map(person=>{
+            display.innerHTML += `<p>${person.name}</p>`;
+        })
+
+    </script>
+</body>
+</html>
