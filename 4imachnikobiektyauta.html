@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        ul {
+            margin:50px 20%;
+            height: 500px;
+            overflow:auto;
+        }
+        li {
+            background:aliceblue;
+            width:100%;
+            height:50px;
+            text-align:center;
+            list-style-type: none;
+            border: 1px solid;
+            box-sizing:border-box;
+            margin: 5px;
+        }
+        li::after {
+            opacity: 0;
+            content:" X";
+            color:#f00;
+            transition: opacity, 500ms;
+        }
+        li:hover::after{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <label for="make">Marka:<input type="text" placeholder="marka" name="make" id="make"></label>
+    <label for="model">Model:<input type="text" placeholder="model" name="model" id="model"></label>
+    <label for="mileage">Przebieg:<input type="number" placeholder="przebieg" name="mileage" id="mileage"></label>
+    <button id="addObj">Dodaj</button><br>
+
+    <label for="searched-make">Wyszukaj pojazd:<input type="text" placeholder="marka" name="searched-make" id="searched-make"></label>
+    <label for="searched-model"><input type="text" placeholder="model" name="searched-model" id="searched-model"></label>
+    <label for="searched-mileage"><input type="text" placeholder="przebieg" name="searched-mileage" id="searched-milage"></label>
+    <button id="searchObj">Wyszukaj</button>
+
+    <ul id="display"></ul>
+    
+    <script>
+        const make = document.querySelector('#make');
+        const model = document.querySelector('#model');
+        const mileage = document.querySelector('#mileage');
+        const addObj = document.querySelector('#addObj');
+        const searchedMake = document.querySelector('#searched-make');
+        const searchedModel = document.querySelector('#searched-model');
+        const searchedMileage = document.querySelector('#searched-mileage');
+        const searchObj = document.querySelector('#searchObj');
+        const display = document.querySelector('#display');
+
+        const carList = [];
+
+        function addCar() {
+            const newCar = {
+                make: make.value,
+                model: model.value,
+                mileage: mileage.value,
+            };
+            carList.push(newCar);
+            display.innerHTML += `<li class="item">${newCar.make} ${newCar.model} ${newCar.mileage}</li>`;
+        }
+
+        function searchCar() { // Do dokonczenia (dziala tylko z wszystkimi wartosciami)
+            if(carList.length>0)
+            {
+                carList.filter(car=>car.make==searchedMake.value || car.model==searchedModel.value || car.mileage==searchedMileage.value).map(car=>display.innerHTML = `${car.make} ${car.model} ${car.mileage}`);
+            }
+        }
+
+        addObj.addEventListener('click', function (evt) {
+            evt.preventDefault();
+            addCar();
+        });
+
+        searchObj.addEventListener('click', function (evt){
+            evt.preventDefault();
+            searchCar();
+        });
+
+        display.addEventListener('click', function (evt) {
+            let element = event.target;
+            display.removeChild(element);
+        });
+
+    </script>
+
+</body>
+</html>
