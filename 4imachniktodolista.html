@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Andrzej Machnik">
+    <title>ToDo Lista</title>
+</head>
+<body>
+    <form action="#">
+        <label for="todo">Co zrobić?<input type="text" id="todo" name="todo"></label>
+        <label for="deadline">Deadline: <input type="date" id="deadline" name="deadline"></label>
+        <button id="addTaskBtn">Dodaj nowy element</button>
+        <div id="display"></div>
+    </form>
+
+    <ul id="todoList"></ul>
+
+    <script>
+        /* do naprawy:
+            checkboxy odznaczają się przy dodawaniu nowych elementów
+
+        */
+
+        const todo = document.querySelector('#todo');
+        const deadline = document.querySelector('#deadline');
+        const addTaskBtn = document.querySelector('#addTaskBtn');
+        const display = document.querySelector('#display');
+        const todoList = document.querySelector('#todoList');
+
+        let tasks = [];
+
+        function addTask() {
+            const task = {
+                todo: todo.value,
+                deadline: deadline.value,
+                completed: false,
+            };
+
+            display.innerHTML = `Dodano nowe zadanie. Termin wykonania: ${task.deadline}.`
+
+            todoList.innerHTML += `<li>Zadanie: ${task.todo} Termin wykonania: ${task.deadline} <label for="completed">Zrobione? <input type="checkbox" class="completed"></label><button class="remove">Usuń</button></li>`; 
+
+            tasks.push(task);
+
+            const removeBtns = document.querySelectorAll('.remove');
+
+            for(let i=0;i<removeBtns.length;i++) {
+                removeBtns[i].addEventListener('click', function () {
+                    removeBtns[i].parentNode.remove();
+                    tasks = tasks.slice(0,i).concat(tasks.slice(i+1))
+                    //delete tasks[i];
+                    //console.log(tasks);
+                });
+            }
+
+            const tasksCompleted = document.querySelectorAll('.completed');
+
+            for(let i=0;i<tasksCompleted.length;i++) {
+                tasksCompleted[i].addEventListener('click', function () {
+                    if(tasksCompleted[i].checked)
+                        tasks[i].completed=true;
+                    else
+                        tasks[i].completed=false;
+                    //console.log(tasks);
+                });
+            }
+        }
+
+        addTaskBtn.addEventListener('click',function(evt) {
+            evt.preventDefault();
+            addTask();
+        });
+    </script>
+</body>
+</html>
